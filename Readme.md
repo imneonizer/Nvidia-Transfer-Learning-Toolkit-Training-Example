@@ -1,6 +1,6 @@
 ### TLT Demo Step by Step (Pascal VOC Dataset)
 
-Before beginning we need to assure that we have a working ``API_KEY``, login to [ngc.nvidia.com](ngc.nvidia.com) and get a key if you don't have one. And create a Directory Structure as shown below.
+Before beginning we need to assure that we have a working ``API_KEY``, login to [ngc.nvidia.com](https://ngc.nvidia.com/) and get a key if you don't have one. And create a Directory Structure as shown below.
 
 ````bash
 ./workspace
