@@ -1,0 +1,13 @@
+#/workspace/spec_files/det_tfrecords_pascal_voc_trainval.txt
+
+kitti_config {
+  root_directory_path: "/workspace/dataset/VOCdevkit/VOC2012"
+  image_dir_name: "JPEGImages_kitti/trainval"
+  label_dir_name: "Annotations_kitti/trainval"
+  image_extension: ".jpg"
+  partition_mode: "random"
+  num_partitions:2
+  val_split: 20
+  num_shards: 10
+}
+image_directory_path: "/workspace/dataset/VOCdevkit/VOC2012"
