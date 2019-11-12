@@ -2,11 +2,11 @@
 
 Before beginning we need to assure that we have a working ``API_KEY``, login to [ngc.nvidia.com](ngc.nvidia.com) and get a key if you don't have one. And create a Directory Structure as shown below.
 
-````python
+````bash
 ./workspace
 	|--dataset
 	|--pretrained_model
-    |--trained_model
+    	|--trained_model
 	|--scripts
 	|--spec_files
 	|--tf_records
@@ -16,13 +16,13 @@ Before beginning we need to assure that we have a working ``API_KEY``, login to 
 
 **Pull the NVIDIA Transfer Learning Toolkit Container.**
 
-````python
+````bash
 docker pull nvcr.io/nvidia/tlt-streamanalytics:v1.0_py2
 ````
 
 To Run the **NV_TLT Container** Execute below command. (remember to mount the directory we just created inside the container).
 
-````python
+````bash
 docker run --runtime=nvidia -it -v '/home/user_name/workspace/:/workspace/' \
 nvcr.io/nvidia/tlt-streamanalytics:v1.0_py2 /bin/bash
 ````
@@ -31,13 +31,13 @@ By now you must have entered inside the bash terminal of the container. Let's qu
 
 To see a **list of available models** play with below command.
 
-````
+````bash
 ngc registry model list nvidia/iva/tlt*
 ````
 
 Now that we have a list of models let's quickly **download pretrained model**.
 
-````python
+````bash
 ngc registry model download-version nvidia/iva/tlt_resnet18_detectnet_v2:1 \
 -d /workspace/pretrained_model
 ````
@@ -46,7 +46,7 @@ Well if you have reached to this step congrats!, it means you are able to run NV
 
 Let's **download our Dataset**.
 
-````python
+````bash
 cd /workspace/dataset
 wget http://host.robots.ox.ac.uk/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar
 chmod 777 VOCtrainval_11-May-2012.tar
@@ -58,7 +58,7 @@ No that we have downloaded our dataset it is required to convert them to kitti f
 
 After creating the script let's quickly do our VOC to kitti conversion.
 
-````python
+````bash
 python /workspace/scripts/voc_to_kitty.py -i /workspace/dataset/VOCdevkit/VOC2012
 ````
 
@@ -66,7 +66,7 @@ This will create additional directories inside ``/workspace/dataset/VOCdevkit/VO
 
 Well if everything is fine till now then we can move on to generate ``tf-records`` for training our model, but before that we need to create a spec_file for the conversion.
 
-````python
+````bash
 #/workspace/spec_files/det_tfrecords_pascal_voc_trainval.txt
 kitti_config {
   root_directory_path: "/workspace/dataset/VOCdevkit/VOC2012"
@@ -83,7 +83,7 @@ image_directory_path: "/workspace/dataset/VOCdevkit/VOC2012"
 
 We are good to go with out ``kitti to tf-records`` conversion. Execute below commands to start the **conversion** process.
 
-````python
+````bash
 tlt-dataset-convert \
     -d /workspace/spec_files/det_tfrecords_pascal_voc_trainval.txt \
     -o /workspace/tf_records/
@@ -99,7 +99,7 @@ Finally, to **Begin Training** Run below command (replace with your own *API_KEY
 API_KEY="------your-api-key-here------"
 ````
 
-````python
+````bash
 tlt-train detection -e /workspace/spec_files/det_train_resnet18_pascal_voc.txt \
                      -r /workspace/trained_model \
                      -k $API_KEY \
