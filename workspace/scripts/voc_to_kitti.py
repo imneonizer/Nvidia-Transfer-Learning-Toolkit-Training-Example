@@ -10,9 +10,9 @@ import argparse
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--input", required=True,
     help="input voc dataset path")
-ap.add_argument("-w", "--width", required=False, default='496',
+ap.add_argument("-wd", "--width", required=False, default='480',
     help="output image width")
-ap.add_argument("-h", "--height", required=False, default='320',
+ap.add_argument("-ht", "--height", required=False, default='320',
     help="output image height")
 args = vars(ap.parse_args())
 
