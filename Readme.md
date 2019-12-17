@@ -1,5 +1,7 @@
 ### TLT Demo Step by Step (Pascal VOC Dataset)
 
+A more updated and detailed guide is available here: https://medium.com/@Smartcow_ai/nvidia-transfer-learning-toolkit-a-comprehensive-guide-75148d1ac1b
+
 Before beginning we need to assure that we have a working ``API_KEY``, login to [ngc.nvidia.com](https://ngc.nvidia.com/) and get a key if you don't have one. And create a Directory Structure as shown below.
 
 ````bash
